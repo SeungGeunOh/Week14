@@ -23,9 +23,9 @@ public class ReadingWebpage extends AppCompatActivity {
         setContentView(R.layout.activity_reading_webpage);
         e2 = (EditText)findViewById(R.id.e2);
         t2 = (TextView)findViewById(R.id.textView);
-
-
+        setTitle("Reading Webpage");
     }
+
     public void onClick(View v){
         thread.start();
     }
@@ -41,7 +41,6 @@ public class ReadingWebpage extends AppCompatActivity {
 
                 if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     final String data = readData(urlConnection.getInputStream());
-
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -55,12 +54,10 @@ public class ReadingWebpage extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         private String readData(InputStream is) {
             String data = "";
-
             Scanner s = new Scanner(is);
             while (s.hasNext())
                 data += s.nextLine() + "\n";

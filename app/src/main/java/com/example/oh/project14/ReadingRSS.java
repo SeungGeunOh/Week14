@@ -1,15 +1,11 @@
 package com.example.oh.project14;
 
 import android.os.Handler;
-import android.os.SystemClock;
-import android.provider.DocumentsContract;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
@@ -40,8 +36,9 @@ public class ReadingRSS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reading_rss);
         listView = (ListView)findViewById(R.id.list_item);
-
+        setTitle("Reading RSS");
     }
+
     public void onClick(View v){
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
         listView.setAdapter(adapter);
@@ -77,7 +74,6 @@ public class ReadingRSS extends AppCompatActivity {
             try {
                 DocumentBuilder builder = builderFactory.newDocumentBuilder();
                 Document document = builder.parse(is);
-
                 int datacount = parseDocument(document);
                 return  datacount;
             } catch (ParserConfigurationException e) {
@@ -123,7 +119,6 @@ public class ReadingRSS extends AppCompatActivity {
                         pubDateValue = firstChileDate.getNodeValue();
                     }
                 }
-
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
                 Date date = new Date(System.currentTimeMillis());
                 newsItem = titleValue + "-" + simpleDateFormat.format(date.parse(pubDateValue));
@@ -132,6 +127,5 @@ public class ReadingRSS extends AppCompatActivity {
             }
             return newsItem;
         }
-
     };
 }

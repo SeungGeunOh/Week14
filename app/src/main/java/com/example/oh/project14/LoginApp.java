@@ -29,12 +29,12 @@ public class LoginApp extends AppCompatActivity {
         userId = (EditText)findViewById(R.id.id);
         passWord = (EditText)findViewById(R.id.pw);
         msg = (TextView)findViewById(R.id.accept);
+        setTitle("Login");
     }
 
     public void onClick(View v){
         thread.start();
     }
-
 
     Handler handler = new Handler();
     Thread thread = new Thread(){
@@ -48,7 +48,6 @@ public class LoginApp extends AppCompatActivity {
                     passWord.setText("");
                     Toast.makeText(getApplicationContext(),"아이디와 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
-
                 URL url = new URL("http://jerry1004.dothome.co.kr/info/login.php");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -60,11 +59,9 @@ public class LoginApp extends AppCompatActivity {
                 outputStream.write(postData.getBytes("UTF-8"));
                 outputStream.flush();
                 outputStream.close();
-
                 InputStream inputStream;
-                if (httpURLConnection.getResponseCode() == httpURLConnection.HTTP_OK) {
+                if (httpURLConnection.getResponseCode() == httpURLConnection.HTTP_OK)
                     inputStream = httpURLConnection.getInputStream();
-                }
                 else
                     inputStream = httpURLConnection.getErrorStream();
                 final String result = loginResult(inputStream);
@@ -78,7 +75,6 @@ public class LoginApp extends AppCompatActivity {
                             msg.setText(result + "님 로그인 성공");
                     }
                 });
-
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (ProtocolException e) {
@@ -95,9 +91,8 @@ public class LoginApp extends AppCompatActivity {
             int len = -1;
             while ((len = br.read(buff)) != -1)
                 str += new String(buff, 0, len);
-      //      str = str.substring(4);
+            str = str.substring(4);
             br.close();
-
             return str;
         }
     };

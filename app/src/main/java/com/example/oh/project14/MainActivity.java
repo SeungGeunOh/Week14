@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Networking");
        /* e1 = (EditText)findViewById(R.id.etmsg);
         myThread.start();*/
     }
@@ -42,10 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
-
     }
 
-    /*Handler myHandler = new Handler();
+   /* Handler myHandler = new Handler();
     Thread myThread = new Thread(){
         @Override
         public void run() {
@@ -68,14 +68,10 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), (String) obj, Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
                 aSocket.close();
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
         }
     };*/
 }
